@@ -70,30 +70,6 @@ container.insertAdjacentHTML("afterbegin", markup);
 
 container.addEventListener("click", clickHandle);
 
-
-function clickHandle(event) {
-    event.preventDefault();
-    if (!event.target.classList.contains("gallery-image")) return;
-    const currentImage = event.target.dataset.source;
-    const oneImage = images.find(({ original }) => original === currentImage);
-
-    const instance = basicLightbox.create(`
-	<div class="modal">
-    <img
-                class="gallery-image"
-                src="${oneImage.original}"
-                data-source="${oneImage.original}"
-                alt="${oneImage.description }"
-            />
-  </div>
-`);
-
-  instance.show();
-
-    
-}
-
-
 function createMarkup(images) {
     return images
         .map(({ preview, original, description }) => `
@@ -108,4 +84,20 @@ function createMarkup(images) {
         </a>
     </li>
     `).join("");
+}
+
+
+function clickHandle(event) {
+    event.preventDefault();
+    if (event.target.nodeName !== "IMG") {
+        return;
+    } else {
+        basicLightbox.create(`
+	<img width="1112" height="640" src="${event.target.dataset.source}">
+`)
+        .show();
+    }
+
+
+    
 }
