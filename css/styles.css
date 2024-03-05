@@ -20,11 +20,14 @@ img {
 
 
 .gallery {
-
+    list-style: none;
+    padding-left: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px 24px;
-    list-style: none;
+    gap: 24px;
+    justify-content: center;
+    width: 1440px;
+    margin: 0 auto;
 }
 
 
